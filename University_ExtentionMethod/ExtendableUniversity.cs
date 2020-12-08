@@ -18,7 +18,7 @@ namespace University_ExtentionMethod
 
         public decimal CalculateLecturePrice(Lecturer lecturer, Lecture lecture)
         {
-            bool isLecturerSuitable = extensions.Select(extension => extension.isSuitableLecturer(lecturer)).Aggregate(true, (first, second) => first && second);
+            bool isLecturerSuitable = extensions.Select(extension => extension.IsSuitableLecturer(lecturer)).Aggregate(true, (first, second) => first && second);
 
             if (isLecturerSuitable)
             {
@@ -45,18 +45,10 @@ namespace University_ExtentionMethod
 
         public double CalculateOverallLecturerTimeDedicatedToLecture(Lecturer lecturer, Lecture lecture) //include time to prepare for the lecture
         {
-            double duration = 0;
-            if (lecturer.Experience > requiredYearsOfExperience)
-            {
-                duration = lecture.Duration * lerturerWithExperiencePreparationTimeCoefficient;
-            }
-            else
-            {
-                duration =  lecture.Duration * lerturerWithoutExperiencePreparationTimeCoefficient;
-            }
+            double duration = GetLecturerPreparationTime(lecture, lecturer);
 
-            foreach(Extension ext in extensions){
-                duration = ext.determineLecturerTimeDedicatedToLecture(lecturer, lecture);
+            foreach (Extension ext in extensions){
+                duration = ext.DetermineLecturerTimeDedicatedToLecture(lecturer, lecture);
             }
             return duration;
         }
@@ -64,7 +56,19 @@ namespace University_ExtentionMethod
         public void AddExtension(Extension extension)
         {
             this.extensions.Add(extension);
-            extension.setUniversity(this);
+            extension.SetUniversity(this);
+        }
+
+        public double GetLecturerPreparationTime(Lecture lecture, Lecturer lecturer)
+        {
+            if (lecturer.Experience > requiredYearsOfExperience)
+            {
+                return lecture.Duration * lerturerWithExperiencePreparationTimeCoefficient;
+            }
+            else
+            {
+                return lecture.Duration * lerturerWithoutExperiencePreparationTimeCoefficient;
+            }
         }
 
         public Extension GetExtension(Type objType)

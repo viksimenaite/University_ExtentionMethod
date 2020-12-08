@@ -6,9 +6,9 @@ namespace University_ExtentionMethod
 {
     interface Extension
     {
-        double determineLecturerTimeDedicatedToLecture(Lecturer lecturer, Lecture lecture);
-        public bool isSuitableLecturer(Lecturer lecturer);
+        double DetermineLecturerTimeDedicatedToLecture(Lecturer lecturer, Lecture lecture);
+        public bool IsSuitableLecturer(Lecturer lecturer);
 
-        void setUniversity(IUniversity university);
+        void SetUniversity(ExtendableUniversity university);
     }
 }

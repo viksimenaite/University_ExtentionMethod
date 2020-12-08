@@ -7,16 +7,16 @@ namespace University_ExtentionMethod
     class LecturerSuitabilityExtension : Extension
     {
         private readonly int requiredYearsOfExperience = 4;
-        public double determineLecturerTimeDedicatedToLecture(Lecturer lecturer, Lecture lecture)
+        public double DetermineLecturerTimeDedicatedToLecture(Lecturer lecturer, Lecture lecture)
         {
             return lecture.Duration;
         }
 
-        public bool isSuitableLecturer(Lecturer lecturer)
+        public bool IsSuitableLecturer(Lecturer lecturer)
         {
             return lecturer.HasPHD && lecturer.Experience > requiredYearsOfExperience;
         }
 
-        public void setUniversity(IUniversity university){}
+        public void SetUniversity(ExtendableUniversity university){}
     }
 }
