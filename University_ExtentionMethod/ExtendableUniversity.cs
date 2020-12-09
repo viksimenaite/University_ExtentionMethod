@@ -14,7 +14,7 @@ namespace University_ExtentionMethod
         private readonly double lerturerWithExperiencePreparationTimeCoefficient = 1.5;
         private readonly double lerturerWithoutExperiencePreparationTimeCoefficient = 2.5;
 
-        private List<Extension> extensions = new List<Extension>();
+        private List<IExtension> extensions = new List<IExtension>();
 
         public decimal CalculateLecturePrice(Lecturer lecturer, Lecture lecture)
         {
@@ -47,13 +47,13 @@ namespace University_ExtentionMethod
         {
             double duration = GetLecturerPreparationTime(lecture, lecturer);
 
-            foreach (Extension ext in extensions){
+            foreach (IExtension ext in extensions){
                 duration = ext.DetermineLecturerTimeDedicatedToLecture(lecturer, lecture);
             }
             return duration;
         }
 
-        public void AddExtension(Extension extension)
+        public void AddExtension(IExtension extension)
         {
             this.extensions.Add(extension);
             extension.SetUniversity(this);
@@ -71,13 +71,13 @@ namespace University_ExtentionMethod
             }
         }
 
-        public Extension GetExtension (Type objType)
+        public IExtension GetExtension (Type objType)
         {
-            List<Extension> extensionsList = (from ext in extensions
+            List<IExtension> extensionsList = (from ext in extensions
                                              where objType.IsInstanceOfType(ext)
                                              select ext).ToList();
 
-            return (Extension)extensionsList.First();
+            return (IExtension)extensionsList.First();
         }
     }
 }

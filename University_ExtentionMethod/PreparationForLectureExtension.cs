@@ -4,7 +4,7 @@ using System.Text;
 
 namespace University_ExtentionMethod
 {
-    class PreparationForLectureExtension : Extension
+    class PreparationForLectureExtension : IExtension
     {
         private readonly double preparationTimeCoefficient = 0.5;
         private ExtendableUniversity university;

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace University_ExtentionMethod
 {
-    class LecturerSuitabilityExtension : Extension
+    class LecturerSuitabilityExtension : IExtension
     {
         private readonly int requiredYearsOfExperience = 4;
         public double DetermineLecturerTimeDedicatedToLecture(Lecturer lecturer, Lecture lecture)
