@@ -71,11 +71,13 @@ namespace University_ExtentionMethod
             }
         }
 
-        public Extension GetExtension(Type objType)
+        public Extension GetExtension (Type objType)
         {
-            return (Extension)(from ext in extensions
-                   where objType.IsInstanceOfType(ext)
-                   select ext);
+            List<Extension> extensionsList = (from ext in extensions
+                                             where objType.IsInstanceOfType(ext)
+                                             select ext).ToList();
+
+            return (Extension)extensionsList.First();
         }
     }
 }
