@@ -9,6 +9,6 @@ namespace University_ExtentionMethod
         double DetermineLecturerTimeDedicatedToLecture(Lecturer lecturer, Lecture lecture);
         public bool IsSuitableLecturer(Lecturer lecturer);
 
-        void SetUniversity(ExtendableUniversity university);
+        public void SetUniversity(ExtendableUniversity university);
     }
 }
